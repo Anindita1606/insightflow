@@ -1,8 +1,30 @@
+import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ArrowUpRight, Lightbulb } from "lucide-react";
+import { useOutletContext } from "react-router-dom";
+import { ArrowUpRight, Lightbulb, Sparkles } from "lucide-react";
 import { toast } from "sonner";
-import { getRecommendations, updateRecommendationStatus } from "@/services/recommendationService";
+import { generateRecommendations, getRecommendations, updateRecommendationStatus } from "@/services/recommendationService";
 import { RecommendationCard } from "@/components/recommendations/RecommendationCard";
 import { SectionHeader } from "@/components/dashboard/SectionHeader";
 import { LoadingState } from "@/components/common/LoadingState";
-export default function Recommendations() { const client = useQueryClient(); const { data, isLoading } = useQuery({ queryKey: ["recommendations"], queryFn: getRecommendations }); const mutation = useMutation({ mutationFn: updateRecommendationStatus, onSuccess: () => { void client.invalidateQueries({ queryKey: ["recommendations"] }); toast.success("Recommendation marked as reviewed"); } }); return <div className="space-y-7" data-testid="recommendations-page"><SectionHeader eyebrow="Decision queue" title="Recommendations" description="The highest-leverage actions InsightFlow sees in your current business signals, prioritized for review." action={<div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-xs text-amber-200"><span className="font-mono">{data?.filter((item) => item.priority === "high" && item.status === "open").length ?? "—"}</span> high priority open</div>} />{isLoading && <LoadingState rows={4} />}<div className="grid gap-4 xl:grid-cols-2">{data?.map((recommendation) => <RecommendationCard key={recommendation.id} recommendation={recommendation} onReview={() => mutation.mutate(recommendation.id)} />)}</div><div className="rounded-xl border border-blue-500/15 bg-blue-500/5 p-5"><div className="flex items-start gap-3"><Lightbulb className="mt-0.5 size-4 text-blue-300" /><div><h3 className="text-sm font-semibold text-blue-100">How recommendations are ranked</h3><p className="mt-1 max-w-2xl text-xs leading-relaxed text-slate-400">Priority considers estimated business impact, confidence in the supporting evidence, and the time sensitivity of the signal. Open an analysis to see the full decision trail.</p></div><ArrowUpRight className="ml-auto size-4 text-blue-300" /></div></div></div>; }
+import type { RecommendationGenerateResponse } from "@/types/insightflow";
+
+export default function Recommendations() {
+  const client = useQueryClient();
+  const { selectedDatasetId } = useOutletContext<{ selectedDatasetId: string }>();
+  const [streamedCharacters, setStreamedCharacters] = useState(0);
+  const [generation, setGeneration] = useState<RecommendationGenerateResponse | null>(null);
+  const { data, isLoading } = useQuery({ queryKey: ["recommendations"], queryFn: getRecommendations });
+  const reviewMutation = useMutation({ mutationFn: updateRecommendationStatus, onSuccess: () => { void client.invalidateQueries({ queryKey: ["recommendations"] }); toast.success("Recommendation marked as reviewed"); } });
+  const generateMutation = useMutation({
+    mutationFn: () => generateRecommendations(selectedDatasetId, (token) => setStreamedCharacters((count) => count + token.length)),
+    onMutate: () => { setStreamedCharacters(0); setGeneration(null); },
+    onSuccess: (result) => {
+      setGeneration(result);
+      client.setQueryData(["recommendations"], result.recommendations);
+      toast.success(result.fallback_used ? "Fallback recommendations are ready" : "ChatGPT recommendations are ready");
+    },
+  });
+
+  return <div className="space-y-7" data-testid="recommendations-page"><SectionHeader eyebrow="Decision queue" title="Recommendations" description="Generate the highest-leverage actions ChatGPT sees in your current business signals, then prioritize them for review." action={<div className="flex flex-wrap items-center gap-2"><div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2 text-xs text-amber-200"><span className="font-mono">{data?.filter((item) => item.priority === "high" && item.status === "open").length ?? "—"}</span> high priority open</div><button onClick={() => generateMutation.mutate()} disabled={generateMutation.isPending} className="flex items-center gap-2 rounded-lg bg-blue-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-blue-500 disabled:opacity-60" data-testid="generate-ai-recommendations-button"><Sparkles className="size-3.5" />{generateMutation.isPending ? "Generating…" : "Generate with ChatGPT"}</button></div>} />{generateMutation.isPending && <div className="flex items-center justify-between rounded-xl border border-blue-500/20 bg-blue-500/5 p-4 text-xs text-blue-200" data-testid="recommendations-ai-loading"><span>ChatGPT is ranking actions by urgency, evidence, and expected impact…</span><span className="font-mono text-[10px] text-blue-400">{streamedCharacters > 0 ? `${streamedCharacters} chars streamed` : "Connecting"}</span></div>}{generation && <div className={`rounded-lg border px-3 py-2 text-xs ${generation.fallback_used ? "border-amber-500/20 bg-amber-500/5 text-amber-200" : "border-emerald-500/20 bg-emerald-500/5 text-emerald-200"}`} data-testid="recommendations-ai-source">Generated by {generation.source}</div>}{isLoading && <LoadingState rows={4} />}<div className="grid gap-4 xl:grid-cols-2">{data?.map((recommendation) => <RecommendationCard key={recommendation.id} recommendation={recommendation} onReview={() => reviewMutation.mutate(recommendation.id)} />)}</div><div className="rounded-xl border border-blue-500/15 bg-blue-500/5 p-5"><div className="flex items-start gap-3"><Lightbulb className="mt-0.5 size-4 text-blue-300" /><div><h3 className="text-sm font-semibold text-blue-100">How recommendations are ranked</h3><p className="mt-1 max-w-2xl text-xs leading-relaxed text-slate-400">Priority considers estimated business impact, confidence in the supporting evidence, and the time sensitivity of the signal. Open an analysis to see the full decision trail.</p></div><ArrowUpRight className="ml-auto size-4 text-blue-300" /></div></div></div>;
+}

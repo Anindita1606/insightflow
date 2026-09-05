@@ -16,6 +16,7 @@ export const API_ENDPOINTS = {
   insights: "/api/insights",
   insightQuery: "/api/insights/query",
   recommendations: "/api/recommendations",
+  recommendationGenerate: "/api/recommendations/generate",
   reports: "/api/reports",
 } as const;
 

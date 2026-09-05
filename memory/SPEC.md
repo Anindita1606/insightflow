@@ -30,6 +30,10 @@ All data access is isolated in `frontend/src/services/`: auth, datasets, analyti
 - Analytics includes metric, dimension, time range, region, and product-category filters.
 - Reports can be filtered by reporting period and include loading, empty, and error states.
 - Dataset deletion requires confirmation before the in-memory record is removed.
+- `POST /api/insights/query` streams structured GPT-5.4 business analysis over SSE using summarized trusted business context.
+- `POST /api/recommendations/generate` streams three prioritized GPT-5.4 business actions over SSE.
+- AI request/response history is persisted in MongoDB `ai_history`; credentials remain backend-only in `EMERGENT_LLM_KEY`.
+- Both AI flows return deterministic fallbacks when the model, backend, or network is unavailable.
 - The application topbar includes an active dataset selector populated through the dataset service.
 - Analytics includes metric, dimension, time range, region, and product-category filters.
 - Reports can be filtered by reporting period and include loading, empty, and error states.

@@ -82,6 +82,11 @@ export interface Insight {
   timestamp: string;
 }
 
+export interface AIInsightResponse extends Insight {
+  source: string;
+  fallback_used: boolean;
+}
+
 export interface Anomaly {
   id: string;
   metric: string;
@@ -102,6 +107,12 @@ export interface Recommendation {
   impact: string;
   metric: string;
   status: "open" | "reviewed";
+}
+
+export interface RecommendationGenerateResponse {
+  recommendations: Recommendation[];
+  source: string;
+  fallback_used: boolean;
 }
 
 export interface Report {

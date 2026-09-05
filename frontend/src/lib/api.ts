@@ -44,3 +44,67 @@ export const apiPut = <T>(path: string, body?: JsonBody) => request<T>("PUT", pa
 export const apiPatch = <T>(path: string, body?: JsonBody) =>
   request<T>("PATCH", path, body ?? null);
 export const apiDelete = <T>(path: string) => request<T>("DELETE", path);
+
+interface StreamPayload {
+  token?: string;
+}
+
+export async function apiPostStream<T>(
+  path: string,
+  body: JsonBody,
+  onToken?: (token: string) => void,
+): Promise<T> {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 65_000);
+  try {
+    const res = await fetch(`${BASE}${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => null);
+      throw new ApiError(res.status, errBody);
+    }
+    if (!res.body) throw new ApiError(502, { detail: "Streaming response unavailable" });
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+    let result: T | undefined;
+
+    const processEvent = (block: string) => {
+      const lines = block.split("\n");
+      const event = lines.find((line) => line.startsWith("event:"))?.slice(6).trim();
+      const rawData = lines.filter((line) => line.startsWith("data:")).map((line) => line.slice(5).trim()).join("\n");
+      if (!event || !rawData) return;
+      const payload = JSON.parse(rawData) as StreamPayload | T;
+      if (event === "token") {
+        const token = (payload as StreamPayload).token;
+        if (token) onToken?.(token);
+      } else if (event === "result") {
+        result = payload as T;
+      }
+    };
+
+    while (true) {
+      const { done, value } = await reader.read();
+      buffer += decoder.decode(value, { stream: !done });
+      const blocks = buffer.split("\n\n");
+      buffer = blocks.pop() ?? "";
+      blocks.forEach(processEvent);
+      if (done) break;
+    }
+    if (buffer.trim()) processEvent(buffer);
+    if (!result) throw new ApiError(502, { detail: "AI stream ended without a result" });
+    return result;
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw new ApiError(408, { detail: "AI request timed out" });
+    }
+    throw error;
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
