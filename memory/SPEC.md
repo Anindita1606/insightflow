@@ -26,6 +26,14 @@ All data access is isolated in `frontend/src/services/`: auth, datasets, analyti
 - Anomalies supports active/resolved state changes.
 - Recommendations supports review state changes.
 - Reports supports preview modal and text download.
+- The application topbar includes an active dataset selector populated through the dataset service.
+- Analytics includes metric, dimension, time range, region, and product-category filters.
+- Reports can be filtered by reporting period and include loading, empty, and error states.
+- Dataset deletion requires confirmation before the in-memory record is removed.
+- The application topbar includes an active dataset selector populated through the dataset service.
+- Analytics includes metric, dimension, time range, region, and product-category filters.
+- Reports can be filtered by reporting period and include loading, empty, and error states.
+- Dataset deletion requires confirmation before the in-memory record is removed.
 - Settings supports session preferences and logout.
 
 ## Visual system
