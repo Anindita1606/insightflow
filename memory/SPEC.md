@@ -5,7 +5,8 @@ InsightFlow is a frontend-only analytics and decision-support SaaS demo. It comm
 
 ## Auth
 - Demo authentication accepts any non-empty email/password.
-- Sign up accepts any non-empty name/email/password.
+- Sign up accepts any non-empty name/email/password, shows an in-place success state, and never redirects or refreshes automatically.
+- Only an explicit Log in submission enters `/app`; the sign-up screen remains static until the user chooses another action.
 - The current user is kept in module memory only and resets on browser refresh.
 - `/app/*` routes redirect to `/login` when no session exists.
 

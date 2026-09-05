@@ -10,8 +10,8 @@ export async function login(email: string, _password: string): Promise<User> {
 }
 
 export async function register(name: string, email: string, _password: string): Promise<User> {
-  currentUser = { ...demoUser, name: name.trim() || demoUser.name, email: email.trim() || demoUser.email, initials: (name.trim() || demoUser.name).split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase() };
-  return withMockLatency(currentUser, 420);
+  const registeredUser = { ...demoUser, name: name.trim() || demoUser.name, email: email.trim() || demoUser.email, initials: (name.trim() || demoUser.name).split(" ").map((part) => part[0]).join("").slice(0, 2).toUpperCase() };
+  return withMockLatency(registeredUser, 420);
 }
 
 export async function logout(): Promise<void> {
