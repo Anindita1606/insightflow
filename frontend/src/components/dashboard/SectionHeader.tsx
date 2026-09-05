@@ -1,0 +1,3 @@
+import type { ReactNode } from "react";
+interface SectionHeaderProps { eyebrow?: string; title: string; description?: string; action?: ReactNode }
+export function SectionHeader({ eyebrow, title, description, action }: SectionHeaderProps) { return <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"> <div>{eyebrow && <div className="mb-2 text-[10px] font-bold uppercase tracking-[.2em] text-blue-400">{eyebrow}</div>}<h2 className="font-heading text-2xl font-semibold tracking-tight text-white sm:text-3xl">{title}</h2>{description && <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-500">{description}</p>}</div>{action}</div>; }

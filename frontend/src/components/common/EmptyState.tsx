@@ -1,0 +1,3 @@
+import { Inbox } from "lucide-react";
+interface EmptyStateProps { title: string; description: string }
+export function EmptyState({ title, description }: EmptyStateProps) { return <div className="flex min-h-48 flex-col items-center justify-center rounded-xl border border-dashed border-slate-800 bg-slate-950/30 px-6 text-center" data-testid="empty-state"><Inbox className="mb-3 size-7 text-slate-600" /><h3 className="font-heading text-sm font-semibold text-slate-300">{title}</h3><p className="mt-1 max-w-sm text-xs text-slate-500">{description}</p></div>; }

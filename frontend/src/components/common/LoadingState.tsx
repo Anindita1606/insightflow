@@ -1,0 +1,2 @@
+interface LoadingStateProps { rows?: number }
+export function LoadingState({ rows = 3 }: LoadingStateProps) { return <div className="space-y-3" data-testid="loading-state">{Array.from({ length: rows }).map((_, index) => <div key={index} className="h-16 animate-pulse rounded-xl border border-slate-800 bg-slate-900/60" />)}</div>; }

@@ -1,0 +1,7 @@
+import type { Severity, RecommendationPriority, DatasetStatus } from "@/types/insightflow";
+
+interface StatusBadgeProps { status: Severity | RecommendationPriority | DatasetStatus | "active" | "open" | "reviewed" | "generating"; label?: string }
+export function StatusBadge({ status, label }: StatusBadgeProps) {
+  const styles: Record<string, string> = { high: "border-rose-500/25 bg-rose-500/10 text-rose-300", medium: "border-amber-500/25 bg-amber-500/10 text-amber-300", low: "border-blue-500/25 bg-blue-500/10 text-blue-300", resolved: "border-emerald-500/25 bg-emerald-500/10 text-emerald-300", ready: "border-emerald-500/25 bg-emerald-500/10 text-emerald-300", processing: "border-amber-500/25 bg-amber-500/10 text-amber-300", error: "border-rose-500/25 bg-rose-500/10 text-rose-300", active: "border-rose-500/25 bg-rose-500/10 text-rose-300", open: "border-blue-500/25 bg-blue-500/10 text-blue-300", reviewed: "border-slate-500/25 bg-slate-500/10 text-slate-300", generating: "border-violet-500/25 bg-violet-500/10 text-violet-300" };
+  return <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[.16em] ${styles[status] ?? styles.low}`} data-testid={`status-badge-${status}`}><span className="size-1.5 rounded-full bg-current" />{label ?? status}</span>;
+}

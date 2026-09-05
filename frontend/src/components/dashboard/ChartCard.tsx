@@ -1,0 +1,4 @@
+import { MoreHorizontal } from "lucide-react";
+import type { ReactNode } from "react";
+interface ChartCardProps { title: string; description?: string; children: ReactNode; className?: string; action?: ReactNode }
+export function ChartCard({ title, description, children, className = "", action }: ChartCardProps) { return <section className={`rounded-xl border border-white/[.08] bg-[#101827] p-5 sm:p-6 ${className}`} data-testid={`chart-card-${title.toLowerCase().replaceAll(" ", "-")}`}><div className="mb-5 flex items-start justify-between gap-3"><div><h3 className="font-heading text-sm font-semibold text-slate-100">{title}</h3>{description && <p className="mt-1 text-xs text-slate-600">{description}</p>}</div>{action ?? <button className="rounded-md p-1 text-slate-600 hover:bg-white/[.05] hover:text-slate-300" data-testid={`chart-options-${title.toLowerCase().replaceAll(" ", "-")}`}><MoreHorizontal className="size-4" /></button>}</div>{children}</section>; }

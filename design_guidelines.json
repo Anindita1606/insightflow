@@ -1,0 +1,203 @@
+{
+  "project_name": "InsightFlow",
+  "tagline": "Turn business data into decisions.",
+  "target_audience": "Data Leaders, Business Analysts, Operations Executives, Product Managers, and Growth Strategists seeking real-time automated business intelligence, proactive anomaly detection, and actionable decision support.",
+  "theme_strategy": {
+    "default_mode": "dark",
+    "supported_modes": ["dark", "light"],
+    "concept": "Executive High-Precision Dark Analytics Workspace with High-Clarity Light Landing / Presentation mode option. Deep Obsidian background with tactical electric cobalt and emerald accents, crisp hairline borders, and zero muddy gradients.",
+    "landing_vibe": "Polished, high-trust SaaS presentation with clear data-to-decision narrative, live metric ticker, interactive interactive preview cards, and seamless auth portal.",
+    "workspace_vibe": "Command-center data console with high information density, crisp typography contrast, zero visual clutter, and structured level-1 (KPIs) -> level-2 (Visual patterns) -> level-3 (Lineage & Actions) hierarchy."
+  },
+  "typography": {
+    "font_pairings": {
+      "heading_font": "Plus Jakarta Sans, Manrope, sans-serif",
+      "body_font": "Geist Variable, IBM Plex Sans, sans-serif",
+      "code_mono_font": "JetBrains Mono, IBM Plex Mono, monospace"
+    },
+    "scale": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-none",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight",
+      "h3_subsection": "text-xl sm:text-2xl font-semibold tracking-tight",
+      "h4_card_title": "text-base sm:text-lg font-semibold tracking-normal text-slate-100",
+      "body_regular": "text-sm sm:text-base leading-relaxed text-slate-300",
+      "body_muted": "text-xs sm:text-sm text-slate-400 leading-normal",
+      "label_badge": "text-[11px] font-semibold uppercase tracking-[0.18em]"
+    },
+    "rules": [
+      "NEVER use generic Inter or plain sans for primary headings; use Plus Jakarta Sans or Manrope with tight tracking.",
+      "Never exceed text-6xl for hero titles. Subheadings must remain in text-lg or text-xl scale.",
+      "Numbers, data metrics, percentages, and SQL/query formulas must use font-mono with tabular figures (font-mono tabular-nums)."
+    ]
+  },
+  "colors": {
+    "palette_name": "Obsidian Kinetic Precision (Archetype 2: Tactical Performance & Pro Analytics)",
+    "tokens": {
+      "bg_workspace": "#090D16",
+      "bg_workspace_surface": "#0F172A",
+      "bg_card": "#131E36",
+      "bg_card_hover": "#182747",
+      "border_subtle": "rgba(255, 255, 255, 0.08)",
+      "border_highlight": "rgba(59, 130, 246, 0.4)",
+      "text_primary": "#F8FAFC",
+      "text_secondary": "#94A3B8",
+      "text_muted": "#64748B",
+      "brand_primary": "#2563EB",
+      "brand_primary_glow": "#3B82F6",
+      "brand_accent_emerald": "#10B981",
+      "brand_accent_amber": "#F59E0B",
+      "brand_accent_rose": "#EF4444",
+      "brand_accent_cyan": "#06B6D4",
+      "brand_accent_violet": "#8B5CF6"
+    },
+    "chart_palette": {
+      "current_period": "#3B82F6",
+      "previous_period": "#64748B",
+      "revenue": "#3B82F6",
+      "growth": "#10B981",
+      "anomalies_high": "#EF4444",
+      "anomalies_medium": "#F59E0B",
+      "anomalies_low": "#3B82F6",
+      "segments": ["#3B82F6", "#10B981", "#8B5CF6", "#F59E0B", "#06B6D4"]
+    },
+    "rules": [
+      "NO muddy full-screen gradients. Maximize contrast with 1px structural borders and dark solid surfaces.",
+      "Buttons must have explicit text color on hover (e.g. hover:bg-blue-600 hover:text-white).",
+      "Transparent headers over dynamic content are STRICTLY FORBIDDEN. Use backdrop-blur-xl bg-slate-950/80 with border-b border-white/10."
+    ]
+  },
+  "surface_and_card_rules": {
+    "card_style": "1px hairline border (border-slate-800 or border-white/10), background bg-slate-900/90 or bg-[#0F172A], subtle inner glow on focus/active, rounded-xl, padding p-5 to p-6.",
+    "kpi_card_style": "High-density metrics with instant status badge, delta indicator with arrow icon, clear 'vs previous period' micro-label, and sparkline trend.",
+    "tracing_beam": "Active anomaly alerts and high-priority recommendations feature a subtle glowing border-indigo-500/30 accent to direct eye focus.",
+    "modal_dialog": "Solid dark background bg-slate-900 border border-slate-700 shadow-2xl backdrop-blur-md rounded-2xl p-6"
+  },
+  "layout_architecture": {
+    "shell_structure": {
+      "sidebar": "Fixed 260px desktop collapsible navigation bar with brand icon, primary link group (Overview, Datasets, Analytics, AI Insights, Anomalies, Recommendations, Reports, Settings), workspace switcher, and user profile with logout trigger at bottom.",
+      "topbar": "Sticky 64px header with active page breadcrumb/title, active dataset dropdown switcher, global natural language search trigger (Cmd+K), real-time anomaly badge trigger, notification bell with unread indicator, and profile menu.",
+      "main_canvas": "Generous p-6 sm:p-8 max-w-7xl mx-auto space-y-6 sm:space-y-8"
+    },
+    "bento_grid_modes": {
+      "overview_grid": "Grid of 5 KPI cards (cols-1 sm:cols-2 lg:cols-5), followed by 8:4 column split for Revenue Trends (col-span-8) and Regional/Segment performance (col-span-4), and bottom Recent AI Insights & Anomalies feed.",
+      "analytics_grid": "Top multi-select dynamic FilterBar, followed by Main Canvas (Bar/Line/Area/Table switchable) and side summary telemetry panel.",
+      "ai_insights_grid": "Dynamic Natural Language Query input box with suggested prompt pills, followed by rich Insight Cards containing structured sections: Finding, Evidence, Business Impact, and Recommended Action."
+    }
+  },
+  "image_urls": [
+    {
+      "category": "executive_collaboration",
+      "url": "https://images.unsplash.com/photo-1787647562168-f268c163018e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjB0ZWNoJTIwZXhlY3V0aXZlJTIwdGVhbSUyMGJ1c2luZXNzJTIwZGF0YSUyMGFuYWx5dGljc3xlbnwwfHx8fDE3ODg1ODM2NDd8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Executive team collaborating around high-resolution multi-dimensional business analytics display",
+      "placement": "Landing page product showcase & hero narrative background overlay"
+    },
+    {
+      "category": "analytics_in_action",
+      "url": "https://images.unsplash.com/flagged/photo-1559733404-9b79677fc959?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB0ZWNoJTIwZXhlY3V0aXZlJTIwdGVhbSUyMGJ1c2luZXNzJTIwZGF0YSUyMGFuYWx5dGljc3xlbnwwfHx8fDE3ODg1ODM2NDd8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Financial and business performance charts analysis on high-end laptop interface",
+      "placement": "Landing page feature spotlight for automated anomaly detection and predictive recommendations"
+    },
+    {
+      "category": "team_strategy",
+      "url": "https://images.unsplash.com/photo-1758873271761-6cfe9b4f000c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTJ8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjB0ZWNoJTIwZXhlY3V0aXZlJTIwdGVhbSUyMGJ1c2luZXNzJTIwZGF0YSUyMGFuYWx5dGljc3xlbnwwfHx8fDE3ODg1ODM2NDd8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Cross-functional enterprise analytics team reviewing operational telemetry and ROI reports",
+      "placement": "About / Enterprise trust section on landing page"
+    }
+  ],
+  "component_specifications": {
+    "Sidebar": "src/components/layout/Sidebar.jsx - Collapsible, handles active route styling, unread badge indicators on Anomalies & Insights, bottom user card with logout trigger.",
+    "Topbar": "src/components/layout/Topbar.jsx - Breadcrumb, global dataset selector dropdown, search modal trigger, notifications popover, theme toggle.",
+    "KPICard": "src/components/dashboard/KPICard.jsx - Metric value, currency/number formatting, percentage delta with up/down icon, previous period comparison subtitle, and mini micro-chart.",
+    "ChartCard": "src/components/dashboard/ChartCard.jsx - Standardized container with title, subtitle, time-range switch, fullscreen or export buttons, and responsive Recharts container.",
+    "InsightCard": "src/components/insights/InsightCard.jsx - Structured AI card with category badge, severity flag, Finding heading, Evidence metrics, Business Impact financial estimation, and 1-click Recommended Action CTA button.",
+    "AnomalyCard": "src/components/anomalies/AnomalyCard.jsx - Anomaly metric title, baseline vs actual deviation (e.g. +42.8% surge), severity pill (High/Medium/Resolved), affected dimension (Region/SKU), and 'Investigate' / 'Mark Resolved' actions.",
+    "RecommendationCard": "src/components/recommendations/RecommendationCard.jsx - Action card with priority ranking (P1/P2/P3), recommended business strategy, expected ROI impact (e.g. +$120K ARR), status toggle, and 'View Deep Analysis' trigger.",
+    "DatasetUploader": "src/components/datasets/DatasetUploader.jsx - Drag-and-drop zone with animated upload progression, sample dataset pre-load buttons (E-commerce 2025, SaaS Metrics Q1-Q4, Global Supply Chain), CSV parser validation, and upload status feedback.",
+    "DatasetTable": "src/components/datasets/DatasetTable.jsx - Paginated, sortable data table with column type detection (numeric, categorical, datetime), null value count indicator, and quick filter search.",
+    "FilterBar": "src/components/analytics/FilterBar.jsx - Multi-dimension filter toolbar with Metric selector, Dimension slicer, Date range picker, Region filter, and Chart Type toggle (Line, Bar, Area, Data Table).",
+    "StatusBadge": "src/components/common/StatusBadge.jsx - Accessible colored tag for High, Medium, Low, Resolved, Pending, Active states.",
+    "ReportViewer": "src/components/reports/ReportViewer.jsx - Executive PDF-style downloadable summary view with executive memo, key metric tables, and embedded anomaly charts."
+  },
+  "service_layer_architecture": {
+    "principles": [
+      "Strict separation of UI components from data fetching logic.",
+      "All services located in `src/services/` with mock implementations returning simulated async Promises with realistic network latencies (200ms - 500ms) and structured error handling.",
+      "Prepared contract ready for Spring Boot REST API drop-in replacement."
+    ],
+    "service_files": {
+      "api.js": "Base axios/fetch client with baseUrl: '/api', authorization bearer token interceptor, and standard error handling wrapper.",
+      "authService.js": "login({ email, password }), register({ name, email, company, password }), logout(), getCurrentUser(), getStoredSession().",
+      "datasetService.js": "getDatasets(), getDatasetById(id), uploadDataset(fileOrFormData), deleteDataset(id), getDatasetPreview(id), loadSampleDataset(sampleKey).",
+      "analyticsService.js": "getOverviewKPIs(datasetId, timeRange), getRevenueTrends(datasetId, timeRange), getRegionalPerformance(datasetId), getProductPerformance(datasetId), getCustomerSegments(datasetId), getCustomAnalytics({ metric, dimension, timeRange, region, category }).",
+      "anomalyService.js": "getAnomalies(datasetId, filterStatus), resolveAnomaly(anomalyId, notes), getAnomalySummary().",
+      "insightService.js": "getRecentInsights(datasetId), queryDataWithAI({ datasetId, prompt }), getInsightCategories().",
+      "recommendationService.js": "getRecommendations(datasetId), updateRecommendationStatus(id, newStatus), executeRecommendation(id).",
+      "reportService.js": "getReports(), generateReport({ title, datasetId, sections }), downloadReport(reportId, format)."
+    }
+  },
+  "mock_dataset_samples": [
+    {
+      "id": "ds-ecomm-2025",
+      "name": "Global_Ecommerce_Transactions_2025.csv",
+      "records": 48520,
+      "size": "4.8 MB",
+      "status": "Ready",
+      "columns": ["order_id", "order_date", "customer_segment", "region", "product_category", "revenue", "discount", "profit_margin", "shipping_cost", "status"],
+      "description": "Comprehensive transactional data across North America, EMEA, APAC, and LATAM."
+    },
+    {
+      "id": "ds-saas-arr-q4",
+      "name": "Enterprise_SaaS_Revenue_Cohorts.csv",
+      "records": 12840,
+      "size": "1.9 MB",
+      "status": "Ready",
+      "columns": ["account_id", "subscription_tier", "mrr", "churn_risk_score", "region", "nps", "expansion_revenue", "contract_length_months"],
+      "description": "Subscription cohort retention and expansion analytics with predictive churn signals."
+    },
+    {
+      "id": "ds-supply-telemetry",
+      "name": "Omnichannel_Supply_Chain_Logistics.csv",
+      "records": 31200,
+      "size": "3.4 MB",
+      "status": "Ready",
+      "columns": ["shipment_id", "origin_hub", "destination_hub", "lead_time_days", "carrier", "fuel_surcharge", "on_time_flag", "damage_rate"],
+      "description": "Logistics throughput, transit lead times, and SLA deviation telemetry."
+    }
+  ],
+  "testing_attributes": {
+    "rule": "Every interactive button, input, navigation link, tab, modal, and key data display element MUST have a dedicated `data-testid` attribute using kebab-case role naming.",
+    "examples": {
+      "nav_overview": "data-testid=\"nav-overview-link\"",
+      "nav_datasets": "data-testid=\"nav-datasets-link\"",
+      "nav_analytics": "data-testid=\"nav-analytics-link\"",
+      "nav_insights": "data-testid=\"nav-insights-link\"",
+      "nav_anomalies": "data-testid=\"nav-anomalies-link\"",
+      "nav_recommendations": "data-testid=\"nav-recommendations-link\"",
+      "nav_reports": "data-testid=\"nav-reports-link\"",
+      "nav_settings": "data-testid=\"nav-settings-link\"",
+      "login_email": "data-testid=\"login-email-input\"",
+      "login_password": "data-testid=\"login-password-input\"",
+      "login_submit": "data-testid=\"login-submit-button\"",
+      "dataset_upload_zone": "data-testid=\"dataset-upload-dropzone\"",
+      "dataset_upload_button": "data-testid=\"dataset-upload-button\"",
+      "ai_prompt_input": "data-testid=\"ai-prompt-input\"",
+      "ai_prompt_submit": "data-testid=\"ai-prompt-submit-button\"",
+      "filter_metric_select": "data-testid=\"filter-metric-select\"",
+      "filter_time_range": "data-testid=\"filter-time-range-select\"",
+      "kpi_total_revenue": "data-testid=\"kpi-total-revenue-value\"",
+      "kpi_total_orders": "data-testid=\"kpi-total-orders-value\"",
+      "kpi_growth_rate": "data-testid=\"kpi-growth-rate-value\"",
+      "anomaly_card": "data-testid=\"anomaly-card-item\"",
+      "recommendation_action_button": "data-testid=\"recommendation-execute-button\"",
+      "report_download_button": "data-testid=\"report-download-button\""
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. Structure the frontend with clean React + Vite + Tailwind CSS under /app/frontend.",
+    "2. Implement a dedicated service layer in `src/services/` for auth, datasets, analytics, anomalies, insights, recommendations, and reports.",
+    "3. Implement full page experiences for Landing/Login, Overview Dashboard, Datasets (with upload, preview, column profiling), Analytics Workspace, Anomalies Feed, AI Natural Language Query, Recommendations Action Center, Reports Studio, and Settings.",
+    "4. Ensure Recharts visualizations are responsive, accessible, color-calibrated to dark theme, and formatted with tooltips and legends.",
+    "5. Include sample dataset loader presets for quick 1-click demo exploration.",
+    "6. Ensure all interactive and key data elements carry proper `data-testid` attributes."
+  ]
+}
